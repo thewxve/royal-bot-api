@@ -1,15 +1,23 @@
 {
-  "name": "royal-bot-api",
-  "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "mongoose": "^8.0.0",
-    "dotenv": "^16.4.1"
-  }
+    "name": "royal-notifier-api",
+    "version": "2.0.0",
+    "description": "API de licenciamento para Royal Notifier",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon index.js"
+    },
+    "dependencies": {
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "express-rate-limit": "^7.1.5",
+        "mongoose": "^8.0.3"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.2"
+    },
+    "engines": {
+        "node": ">=18"
+    }
 }
