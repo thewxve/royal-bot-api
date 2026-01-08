@@ -5,10 +5,11 @@
  * ═══════════════════════════════════════════════════════════════
  */
 
-const express = require('express');
-const mongoose = require('mongoose');
-const rateLimit = require('express-rate-limit');
-require('dotenv').config();
+import express from 'express';
+import mongoose from 'mongoose';
+import rateLimit from 'express-rate-limit';
+import crypto from 'crypto';
+import 'dotenv/config';
 
 const app = express();
 app.use(express.json());
@@ -434,18 +435,18 @@ app.post('/admin/generate', adminAuth, async (req, res) => {
         const keys = [];
 
         for (let i = 0; i < Math.min(count, 50); i++) {
-            const randomPart = require('crypto').randomBytes(4).toString('hex').toUpperCase();
-            const key = `${config.prefix}-${randomPart}`;
+            const randomPart = crypto.randomBytes(4).toString('hex').toUpperCase();
+            const keyStr = `${config.prefix}-${randomPart}`;
 
             const newKey = new Key({
-                key,
+                key: keyStr,
                 plan,
                 duration: config.duration,
                 active: false
             });
 
             await newKey.save();
-            keys.push(key);
+            keys.push(keyStr);
         }
 
         return res.json({ success: true, keys });
